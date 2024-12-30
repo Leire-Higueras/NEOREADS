@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TFB - Recomendador de Libros{% endblock %}</title>
+    <!--archivo CSS e Iconos -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    {% block extra_styles %}{% endblock %}
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/books">Explorar Libros</a>
+            <a href="/library">Mi Librería</a>
+            <a href="/chatbot">ChatBot</a>
+            <a href="/settings">Configuración</a>
+        </nav>
+        <div class="search-container">
+            <form action="/search" method="GET" class="search-form">
+                <input type="text" name="query" placeholder="Buscar por título, autor o ISBN" class="search-bar" required>
+                <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+    </header>    
+        
+    <!--Contenido principal -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!--Footer -->
+    <footer>
+        <p>&copy; 2024 TFB - Recomendador de Libros por Leire Higueras. Todos los derechos reservados.</p>
+        <a href="/privacidad">Política de Privacidad</a>
+    </footer>
+
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

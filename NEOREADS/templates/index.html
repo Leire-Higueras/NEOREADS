@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<div class="index-page">
+    <h1>Bienvenido a TFB</h1>
+    <p>Descubre y organiza tus libros favoritos con nuestro recomendador de libros inteligente.</p>
+
+    <div class="index-sections">
+        <div class="section">
+            <h2>Explorar Libros</h2>
+            <p>Encuentra libros nuevos y organiza tus lecturas según tus intereses.</p>
+            <a href="/books" class="btn">Explorar</a>
+        </div>
+        <div class="section">
+            <h2>Mi Librería</h2>
+            <p>Gestiona tus libros leídos, pendientes y favoritos en un solo lugar.</p>
+            <a href="/library" class="btn">Ir a Mi Librería</a>
+        </div>
+        <div class="section">
+            <h2>Chatbot</h2>
+            <p>Interactúa con nuestro chatbot para recomendaciones y resúmenes personalizados.</p>
+            <a href="/chatbot" class="btn">Hablar con el Chatbot</a>
+        </div>
+        <div class="section">
+            <h2>Configuración</h2>
+            <p>Personaliza tu experiencia ajustando tus preferencias.</p>
+            <a href="/settings" class="btn">Ir a Configuración</a>
+        </div>
+    </div>
+
+    <!--Caja Grafico -->
+    <div class="chart-container">
+        <canvas id="topBooksChart"></canvas>
+    </div>
+    
+</div>
+
+<!--Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    //Datos enviados
+    const chartData = {{ chart_data|tojson }};  <!-- Utilizamos tojson para convertir a JSON -->
+
+    //Grafico + vendidos
+    const ctx = document.getElementById('topBooksChart').getContext('2d');
+    const topBooksChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: chartData.labels,  //Titulos de los libros
+        datasets: [{
+            label: 'Número de Reseñas',
+            data: chartData.values,  //Numero de reseñas
+            backgroundColor: 'rgba(90, 119, 55, 0.6)',
+            borderColor: 'rgba(90, 119, 55, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            title: {
+                display: true,
+                text: 'Sagas Mas Vendidos', 
+                font: {
+                    size: 24,
+                    family: 'Arial, sans-serif',
+                    weight: 'bold',
+                    color: 'var(--verde-acento)'
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(tooltipItem) {
+                        const bookRating = chartData.ratings[tooltipItem.dataIndex];
+                        return `Reseñas: ${tooltipItem.raw} | Calificación: ${bookRating}`;
+                    }
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+{% endblock %}

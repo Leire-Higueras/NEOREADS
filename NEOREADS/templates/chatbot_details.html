@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="details-container">
+        <h1 class="details-title-details">Detalles del Chatbot</h1>
+
+        <!-- Grafico de feedback -->
+        <div class="chart-container-details">
+            <h2 class="section-title-details">Distribución de Feedback</h2>
+            <canvas id="grafica_chatbot"></canvas>
+        </div>
+
+        <!-- Metricas del modelo -->
+        <div class="metrics-container-details">
+            <h2 class="section-title-details">Métricas del Modelo</h2>
+            <pre id="metrics-output-details">Cargando métricas...</pre>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        async function generateFeedbackChart() {
+            const ctx = document.getElementById('grafica_chatbot').getContext('2d'); <!-- Cambiado el id -->
+
+            //Datos de feedback
+            const response = await fetch('/chatbot/feedback');
+            const feedbackData = await response.json();
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(feedbackData),
+                    datasets: [{
+                        label: 'Distribución de Feedback',
+                        data: Object.values(feedbackData),
+                        backgroundColor: ['#5A7737', '#F4A800'],
+                        borderColor: ['#4E6731', '#D98B00'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'top' },
+                        title: { display: true, text: 'Distribución de Feedback' }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        async function loadModelMetrics() {
+            const response = await fetch('/chatbot/model_metrics');
+            const metricsOutput = document.getElementById('metrics-output-details');
+            if (response.ok) {
+                const metrics = await response.json();
+                metricsOutput.textContent = JSON.stringify(metrics, null, 2);
+            } else {
+                console.log("Error al obtener las métricas del modelo:", response.statusText);
+                metricsOutput.textContent = "No se pudieron cargar las métricas.";
+            }
+        }
+
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+            generateFeedbackChart();
+            loadModelMetrics();
+        });
+    </script>
+{% endblock %}

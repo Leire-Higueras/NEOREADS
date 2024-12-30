@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Chatbot{% endblock %}
+
+{% block content %}
+<div class="chatbot-page">
+    <h1>Chatbot</h1>
+    <div id="chat-area" class="chat-area"></div>
+    <div class="chat-input-container">
+        <button id="details-button" onclick="window.location.href='/chatbot/details';">Detalles</button>
+        <input
+            id="user-input"
+            type="text"
+            placeholder="Hazme una pregunta sobre libros..."
+            onkeypress="handleKeyPress(event)"
+        />
+        <button id="send-button" onclick="sendMessage()">Enviar</button>
+    </div>
+</div>
+
+<script>
+    //Mensaje de inicio
+    document.addEventListener("DOMContentLoaded", () => {
+        const chatArea = document.getElementById("chat-area");
+        chatArea.innerHTML += `<div class="bot-message">
+            <p>¡Hola! Estoy aquí para ayudarte a encontrar libros. Puedes pedirme recomendaciones de las siguientes maneras:</p>
+            <ul>
+                <li><strong>Genero:</strong> Escribe "aventura", "misterio" o cualquier genero que te interese.</li>
+                <li><strong>Paginas:</strong> Escribe "100 paginas" o "menos de 300 paginas".</li>
+                <li><strong>Autor:</strong> Escribe "libros de [nombre del autor]".</li>
+            </ul>
+            <p>Si no estas seguro, escribe lo que buscas y tratare de ayudarte. ¡Empecemos!</p>
+
+
+        </div>`;
+    });
+
+    //Funciona con la tecla enter
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    }
+
+    //Enviar preguntas
+    async function sendMessage() {
+        const userInput = document.getElementById("user-input").value.trim();
+
+        if (!userInput) {
+            return; //No mensajes vacios
+        }
+
+        const chatArea = document.getElementById("chat-area");
+
+        //Mostrar el mensaje del usuario
+        chatArea.innerHTML += `<div class="user-message">${userInput}</div>`;
+
+        try {
+            //Enviar la pregunta al backend
+            const response = await fetch('/chatbot/ask', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: userInput })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                //Respuesta del chatbot
+                chatArea.innerHTML += `<div class="bot-message">${data.reply}</div>`;
+            } else {
+                chatArea.innerHTML += `<div class="bot-message">Error procesando tu solicitud.</div>`;
+            }
+        } catch (error) {
+            chatArea.innerHTML += `<div class="bot-message">Error procesando tu solicitud.</div>`;
+        }
+
+        //Limpiar el campo de entrada y desplazar el área de chat al final
+        document.getElementById("user-input").value = '';
+        chatArea.scrollTop = chatArea.scrollHeight;
+    }
+</script>
+{% endblock %}

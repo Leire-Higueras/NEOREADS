@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Configuración{% endblock %}
+
+{% block content %}
+<div class="settings-page">
+    <div class="settings-container">
+        <h1>Configuraciones:</h1>
+        
+        <!--Mi Perfil -->
+        <div class="settings-item">
+            <div class="settings-logo"><i class="bi bi-person-fill"></i></div>
+            <span>Mi Perfil</span>
+        </div>
+
+        <!--Amigos -->
+        <div class="settings-item">
+            <div class="settings-logo"><i class="bi bi-people-fill"></i></div>
+            <span>Amigos</span>
+        </div>
+
+        <!--Desafio de Lectura -->
+        <div class="settings-item">
+            <div class="settings-logo"><i class="bi bi-book"></i></div>
+            <span>Desafío de Lectura</span>
+        </div>
+
+        <!--Notificaciones -->
+        <div class="settings-notifications">
+            <label for="notifications">Notificaciones</label>
+            <input type="checkbox" id="notifications">
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function toggleNotifications(checked) {
+        if (checked) {
+            alert('Notificaciones activadas.');
+        } else {
+            alert('Notificaciones desactivadas.');
+        }
+    }
+</script>
+{% endblock %}

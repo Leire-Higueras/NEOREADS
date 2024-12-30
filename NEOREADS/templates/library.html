@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Mi Librería{% endblock %}
+
+{% block content %}
+<div class="library-page">
+    <h1>Mi Librería</h1>
+    <p>Organiza tus libros en las siguientes categorías:</p>
+    <div class="library-categories">
+        <a href="/shelf/Para leer" class="library-card">
+            <h2>📚 Pendientes</h2>
+            <p>Libros que tienes pendientes.</p>
+        </a>
+        <a href="/shelf/Leídos" class="library-card">
+            <h2>✅ Leídos</h2>
+            <p>Libros que ya has completado.</p>
+        </a>
+        <a href="/shelf/Actualmente leyendo" class="library-card">
+            <h2>📖 Actualmente Leyendo</h2>
+            <p>Libros en progreso.</p>
+        </a>
+        <a href="/shelf/Favoritos" class="library-card">
+            <h2>⭐ Favoritos</h2>
+            <p>Libros que amas.</p>
+        </a>
+        <a href="/shelf/Abandonados" class="library-card">
+            <h2>❌ Abandonados</h2>
+            <p>Libros que dejaste de leer.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}{{ book['Título'] }}{% endblock %}
+
+{% block content %}
+<div class="book-detail-page">
+    <!--Titulo del libro -->
+    <h1 class="book-title">{{ book['Título'] }}</h1>
+    
+    <div class="book-detail-container">
+        <!--Detalles del libro -->
+        <div class="book-info">
+            <p><strong>Autor:</strong> {{ book['Autores'] if book['Autores'] not in ['N/A', '', None] else 'Desconocido' }}</p>
+            <p><strong>Calificación:</strong> {{ book['Calificación de Usuarios'] if book['Calificación de Usuarios'] not in ['N/A', '', None] else 'Sin datos' }}</p>
+            <p><strong>Número de páginas:</strong> {{ book['Número de Páginas'] if book['Número de Páginas'] not in ['N/A', '', None] else 'No disponible' }}</p>
+            <p><strong>Géneros:</strong> 
+                {% if book['Géneros'] and book['Géneros'] not in ['N/A', '', None] %}
+                    {{ book['Géneros'] }}
+                {% else %}
+                    No especificado
+                {% endif %}
+            </p>
+            <p><strong>ISBN:</strong> {{ book['ISBN'] if book['ISBN'] not in ['N/A', '', None] else 'No disponible' }}</p>
+            <p><strong>Fecha de publicación:</strong> {{ book['Fecha de Publicación'] if book['Fecha de Publicación'] not in ['N/A', '', None] else 'Desconocida' }}</p>
+            <p><strong>Sinopsis:</strong> {{ book['Sinopsis'] if book['Sinopsis'] not in ['N/A', '', None] else 'No disponible' }}</p>
+        </div>
+
+        <!--Portada de libro -->
+        <div class="book-cover">
+            <img src="{{ book['Imagen de la Portada'] }}" alt="Portada del libro" onerror="this.src='/static/images/placeholder.png'">
+        </div>
+    </div>
+    
+    <!--Botones de accion -->
+    <div class="action-buttons">
+        <a href="/books" class="btn-action">Volver a la lista de libros</a>
+    </div>
+</div>
+{% endblock %}

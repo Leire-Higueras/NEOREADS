@@ -1,0 +1,659 @@
+
+:root {
+    --fondo-principal: #F9F9F9;
+    --fondo-secundario: #ffffff;
+    --texto: #333333;
+    --verde-acento: #5A7737;
+    --amarillo-acento: #F4A800;
+    --borde: #E0E0E0;
+}
+
+/*******************************************/
+/* HTML, Body, Main */
+html, body {
+    height: 100%;
+    margin: 0;
+    flex-direction: column;
+}
+main {
+    flex: 1;
+}
+
+/*******************************************/
+/* Titulos de letras */
+h1 {
+    color: var(--verde-acento);
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/*******************************************/
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--verde-acento);
+    color: #FFFFFF;
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/*******************************************/
+/* Navbar */
+header nav {
+    display: flex;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+header nav a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+header nav a:hover {
+    background-color: var(--amarillo-acento);
+}
+
+/*******************************************/
+/* Contenedor de busqueda */
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto; 
+}
+
+/* Barra de busqueda */
+.search-bar {
+    width: 600px;
+    height: 40px;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: 1px solid var(--borde);
+    border-radius: 5px 0 0 5px;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Boton de lupa */
+.search-button {
+    width: 50px;
+    height: 40px;
+    border: solid var(--amarillo-acento);
+    border-radius: 5px;
+    background-color: var(--amarillo-acento);
+    color: #FFFFFF;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Icono lupa */
+.search-button i {
+    font-size: 16px;
+}
+
+/*******************************************/
+/* Botones de las cajas */
+.section .btn {
+    background-color: var(--amarillo-acento);
+    color: #FFFFFF;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    align-self: center;
+}
+
+.section .btn:hover {
+    background-color: var(--verde-acento);
+    transform: scale(1.05);
+}
+
+/*******************************************/
+/* Indice */
+.index-page {
+    background-color: #F9F9F9;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.index-page h1 {
+    color: #5A7737;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.index-sections {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 70px;
+}
+
+.section {
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 5px;
+    padding: 20px;
+    width: 280px;
+    min-height: 250px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+    color: #5A7737;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.section p {
+    margin-bottom: 15px;
+}
+
+/*******************************************/
+/* Grafica de libros mas vendidos (Index) */
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 800px;
+    background-color: var(--fondo-principal);
+    border: 2px solid var(--borde);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#topBooksChart {
+    width: 100% !important;
+    height: 400px;
+    
+}
+
+/*******************************************/
+/* Libreria */
+.library-page {
+    background-color: #F9F9F9;
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.library-page h1 {
+    color: #5A7737;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.library-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.library-card {
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 5px;
+    padding: 20px;
+    width: calc(50% - 20px);
+    text-align: left;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    text-decoration: none;
+    color: #333333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.library-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.library-card h2 {
+    font-size: 1.5em;
+    color: #5A7737;
+    margin-bottom: 10px;
+}
+
+.library-card p {
+    font-size: 1em;
+    margin: 0;
+    color: #333333;
+}
+
+@media (max-width: 768px){
+    .library-card {
+        width: 100%;}
+}
+
+/*******************************************/
+/* Lista de Libros */
+
+.books-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+.book-row {
+    display: grid;
+    grid-template-columns: 100px auto 150px;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.book-cover img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.book-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+}
+
+.book-details h2 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #5A7737;
+}
+
+.book-details p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #333333;
+}
+
+.book-action .btn {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #F4A800;
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.book-action .btn:hover {
+    background-color: #5A7737;
+}
+
+/*******************************************/
+/* Ficha Tecnica */
+.book-detail-page {
+    padding: 20px;
+    background-color: var(--fondo-principal);
+    max-width: 800px;
+    margin: 20px auto;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 50px;
+}
+
+.book-title {
+    text-align: center;
+    color: var(--verde-acento);
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.book-detail-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+/* Detalles del libro */
+.book-info {
+    flex: 3;
+    font-size: 0.9em;
+    line-height: 1.8;
+    color: var(--texto);
+}
+
+.book-info p {
+    margin: 5px 0;
+}
+
+/* Portada del libro */
+.book-cover {
+    flex: 1;
+    text-align: center;
+}
+
+.book-cover img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones de accion */
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn-action {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--amarillo-acento);
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-action:hover {
+    background-color: var(--verde-acento);
+    transform: scale(1.05);
+}
+
+/*******************************************/
+/* Chatbot */
+.chatbot-page {
+    max-width: 800px; 
+    margin: 103px auto 120px auto;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-height: calc(50vh - 200px);
+    box-sizing: border-box;
+    border: 1px solid var(--borde);
+}
+
+/* Area de chat */
+.chat-area {
+    width: 96%;
+    height: 400px;
+    overflow-y: auto;
+    background-color: var(--fondo-secundario); /* Fondo secundario */
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Mensajes del usuario */
+.chat-area div.user-message {
+    text-align: right;
+    background-color: #fdd88a; /* Mensajes del usuario en amarillo */
+    color: var(--texto);
+    border-radius: 10px;
+    padding: 10px;
+    margin-left: auto;
+    margin-bottom: 20px;
+    max-width: 70%;
+    word-wrap: break-word;
+    font-weight: bold;
+}
+
+/* Mensajes del bot */
+.chat-area div.bot-message {
+    text-align: left;
+    background-color: #96c27e;
+    color: var(--texto);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    max-width: 70%;
+    word-wrap: break-word;
+    font-weight: bolder;
+}
+
+/* Contenedor de entrada */
+.chat-input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Entrada de texto */
+.chat-input-container input {
+    flex: 1;
+    max-width: 600px;
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    background-color: var(--fondo-secundario);
+    color: var(--texto);
+}
+
+/* Botones */
+.chat-input-container button {
+    padding: 15px 25px;
+    font-size: 16px;
+    background-color: var(--verde-acento);
+    color: var(--fondo-secundario);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.chat-input-container button:hover {
+    background-color: var(--amarillo-acento);
+}
+/*******************************************/
+/* Pagina de Detalles del chatbot */
+
+/* Contenedor principal */
+.details-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: var(--fondo-principal);
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Titulo principal */
+.details-title-details {
+    font-size: 2.5em;
+    color: var(--verde-acento);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Titulos de secciones */
+.section-title-details {
+    font-size: 1.8em;
+    color: var(--texto);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--verde-acento);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Contenedor del grafico */
+.chart-container-details {
+    margin: 40px 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Estilo del canvas */
+#grafica_chatbot {
+    max-width: 100%;
+    height: auto;
+    padding: 10px;
+}
+
+/* Contenedor de metricas */
+.metrics-container-details {
+    margin-top: 40px;
+    text-align: center;
+}
+
+/* Estilo de las metricas */
+#metrics-output-details {
+    text-align: left;
+    padding: 15px;
+    background-color: var(--fondo-secundario);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    white-space: pre-wrap;
+    max-height: 300px;
+    overflow-y: auto;
+    font-size: 0.95em;
+    margin: 0 auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/*******************************************/
+/* Pagina de configuracion */
+
+.settings-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 82vh;
+    background-color: var(--fondo-principal);
+}
+
+.settings-container {
+    text-align: center;
+    border: 2px solid var(--borde);
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+    background-color: rgba(238, 208, 109, 0.168);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.settings-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 20px 0;
+}
+
+.settings-logo {
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--verde-acento);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--texto);
+    background-color: var(--fondo-principal);
+    margin-right: 15px;
+}
+
+.settings-item span {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--texto);
+    align-self: center;
+}
+
+/* notificaciones */
+.settings-notifications {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--fondo-secundario);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--borde);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.settings-notifications label {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--texto);
+    cursor: pointer;
+}
+
+.settings-notifications input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--amarillo-acento);
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: var(--fondo-secundario);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.settings-notifications input[type="checkbox"]:checked {
+    background-color: var(--amarillo-acento);
+    border-color: var(--verde-acento);
+}
+
+/*******************************************/
+/* Footer */
+footer {
+    background-color: var(--verde-acento);
+    color: #FFFFFF;
+    text-align: center;
+    padding: 15px 20px;
+    position: relative;
+    width: 100%;
+    z-index: 10;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+footer a {
+    color: #F4A800;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
